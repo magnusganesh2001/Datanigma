@@ -1,4 +1,5 @@
 import { EmployerComponent } from './employer/employer.component';
+import { FindJobsComponent } from './find-jobs/find-jobs.component';
 import { HomeComponent } from './home/home.component';
 import { SignupComponent } from './signup/signup.component';
 import { LoginComponent } from './login/login.component';
@@ -10,10 +11,14 @@ const routes: Routes = [
   {path: "login", component:LoginComponent},
   {path: "signup", component:SignupComponent},
   {path: "employer", component:EmployerComponent},
+  { path: '', component: HomeComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'signup', component: SignupComponent },
+  { path: 'find-job', component: FindJobsComponent },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

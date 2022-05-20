@@ -11,6 +11,10 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { EmployerComponent } from './employer/employer.component'
 
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FindJobsComponent } from './find-jobs/find-jobs.component'
+import { MatCardModule } from '@angular/material/card';
+import { MatTableModule } from '@angular/material/table'
 @NgModule({
   declarations: [
     AppComponent,
@@ -18,6 +22,7 @@ import { EmployerComponent } from './employer/employer.component'
     SignupComponent,
     HomeComponent,
     EmployerComponent,
+    FindJobsComponent,
   ],
   imports: [
     BrowserModule,
@@ -25,6 +30,9 @@ import { EmployerComponent } from './employer/employer.component'
     ReactiveFormsModule,
     HttpClientModule,
     MatButtonModule,
+    BrowserAnimationsModule,
+    MatCardModule,
+    MatTableModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
