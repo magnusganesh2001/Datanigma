@@ -8,7 +8,8 @@ import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { HomeComponent } from './home/home.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { MatButtonModule } from '@angular/material/button'
+import { MatButtonModule } from '@angular/material/button';
+import { EmployerComponent } from './employer/employer.component'
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { MatButtonModule } from '@angular/material/button'
     LoginComponent,
     SignupComponent,
     HomeComponent,
+    EmployerComponent,
   ],
   imports: [
     BrowserModule,
