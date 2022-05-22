@@ -1,3 +1,4 @@
+import { JobService } from './../core/services/job.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,8 +7,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./employer.component.scss']
 })
 export class EmployerComponent implements OnInit {
+  displayedColumns: string[] = ['no', 'title', 'company', 'description', 'salary'];
+  dataSource = [];
+  constructor(private jobService: JobService) {
+    this.jobService.getCreatedJobs().then(res => {
+      console.log(res.data);
 
-  constructor() { }
+      this.dataSource = res.data.jobs;
+    });
+  }
 
   ngOnInit(): void {
   }
