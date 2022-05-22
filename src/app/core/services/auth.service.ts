@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import axios, { AxiosInstance } from 'axios';
 import { Subject } from 'rxjs';
+import jwt_decode from 'jwt-decode';
 
 @Injectable({
   providedIn: 'root'
@@ -46,8 +47,20 @@ export class AuthService {
     this.router.navigate(['login']);
   }
 
-  public getUser() {
-    return JSON.parse(localStorage.getItem('token')+"");
+  private getDecodedAccessToken(token: string): any {
+    try {
+      return jwt_decode(token);
+    } catch(Error) {
+      return null;
+    }
+  }
+
+  public getTokenData() {
+    return this.getDecodedAccessToken(localStorage.getItem('token')!);
+  }
+
+  public getToken() {
+    return JSON.parse(localStorage.getItem('token')!);
   }
 
   public signup(user: any) {

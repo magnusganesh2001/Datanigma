@@ -17,7 +17,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatTableModule } from '@angular/material/table';
 import { JobPostComponent } from './job-post/job-post.component';
 import {MatInputModule} from '@angular/material/input';
-import { EmployersComponent } from './employers/employers.component';
+import { HeaderComponent } from './header/header.component';
 
 
 @NgModule({
@@ -29,7 +29,7 @@ import { EmployersComponent } from './employers/employers.component';
     EmployerComponent,
     FindJobsComponent,
     JobPostComponent,
-    EmployersComponent,
+    HeaderComponent,
   ],
   imports: [
     BrowserModule,

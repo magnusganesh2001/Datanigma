@@ -1,3 +1,4 @@
+import { AuthService } from './core/services/auth.service';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
@@ -9,7 +10,14 @@ import { Router } from '@angular/router';
 export class AppComponent {
   title = 'datanigma';
 
-  constructor(private router:Router){}
+  authenticated: boolean;
+
+  constructor(private router:Router, private authService: AuthService){
+    this.authenticated = this.authService.isAuthenticated();
+    this.authService.authorised.subscribe(authStatus => {
+      this.authenticated = authStatus;
+    })
+  }
 
   goToPage(pageName:string):void{
     this.router.navigate([`${pageName}`]);
