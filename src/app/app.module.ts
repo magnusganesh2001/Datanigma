@@ -8,11 +8,16 @@ import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { HomeComponent } from './home/home.component';
 import { ReactiveFormsModule } from '@angular/forms';
+
 import { MatButtonModule } from '@angular/material/button';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FindJobsComponent } from './find-jobs/find-jobs.component'
 import { MatCardModule } from '@angular/material/card';
 import { MatTableModule } from '@angular/material/table'
+
+import { EmployersComponent } from './employers/employers.component';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,6 +25,7 @@ import { MatTableModule } from '@angular/material/table'
     SignupComponent,
     HomeComponent,
     FindJobsComponent,
+    EmployersComponent,
   ],
   imports: [
     BrowserModule,
