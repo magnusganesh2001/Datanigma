@@ -39,7 +39,7 @@ export class SignupComponent implements OnInit {
       type: this.userType,
     }
     this.authService.signup(user).then(res => {
-      this.authService.setAuthenticated(res.data.user);
+      this.router.navigate(['login']);
     }).catch(err => {
       console.log(err);
       alert(err);
