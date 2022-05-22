@@ -1,7 +1,9 @@
+import { User } from './../core/models/user.model';
+import { AuthService } from './../core/services/auth.service';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-signup',
@@ -11,25 +13,41 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 export class SignupComponent implements OnInit {
 
   public signupForm !:FormGroup;
-  constructor(private formBuilder : FormBuilder, private http : HttpClient, private router: Router) { }
+  userType: string;
+
+  constructor(private formBuilder : FormBuilder, private authService: AuthService, private router: Router) {
+    this.userType = 'Employer';
+  }
 
   ngOnInit(): void {
     this.signupForm = this.formBuilder.group({
-      fullname:[' '],
-      email:[' '],
-      password:[' '],
-      mobile:[' ']
+      userName: new FormControl(""),
+      userCompany: new FormControl(""),
+      userPhone: new FormControl(""),
+      userEmail: new FormControl(""),
+      userPassword: new FormControl("")
     })
   }
+
   signUp(){
-    this.http.post<any>('http://localhost:3000/signUp', this.signupForm.value)
-    .subscribe(res=>{
-      alert("SignUp Successfull");
-      this.signupForm.reset();
-      this.router.navigate(['login']);
-    }, err=>{
-      alert("Something went wrong")
-    })
+    const user = {
+      name: this.signupForm.get('userName')?.value,
+      company: this.signupForm.get('userCompany')?.value,
+      phone: this.signupForm.get('userPhone')?.value,
+      email: this.signupForm.get('userEmail')?.value,
+      password: this.signupForm.get('userPassword')?.value,
+      type: this.userType,
+    }
+    this.authService.signup(user).then(res => {
+      this.authService.setAuthenticated(res.data.user);
+    }).catch(err => {
+      console.log(err);
+      alert(err);
+    });
+  }
+
+  setSignup(type: string) {
+    this.userType = type;
   }
 
 }
