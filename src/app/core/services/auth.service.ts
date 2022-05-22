@@ -7,7 +7,7 @@ import { Subject } from 'rxjs';
   providedIn: 'root'
 })
 export class AuthService {
-  private BASE_URL = "http://localhost:8080/api/auth/"
+  private BASE_URL = "http://localhost:3000/api/user/"
   private authenticated = false;
 
   authorised: Subject<boolean> = new Subject<boolean>();
@@ -23,7 +23,7 @@ export class AuthService {
       },
       baseURL: this.BASE_URL
     });
-    if (localStorage.getItem('user') !== null) {
+    if (localStorage.getItem('token') !== null) {
       this.authenticated = true;
       this.authorised.next(this.authenticated);
     }
@@ -33,8 +33,8 @@ export class AuthService {
     return this.authenticated;
   }
 
-  public setAuthenticated(user: any): void {
-    localStorage.setItem('user', JSON.stringify(user));
+  public setAuthenticated(token: string): void {
+    localStorage.setItem('token', JSON.stringify(token));
     this.authenticated = true;
     this.authorised.next(this.authenticated);
   }
@@ -42,12 +42,12 @@ export class AuthService {
   public logout(): void {
     this.authenticated = false;
     this.authorised.next(this.authenticated);
-    localStorage.removeItem('user');
-    this.router.navigate(['auth/login']);
+    localStorage.removeItem('token');
+    this.router.navigate(['login']);
   }
 
   public getUser() {
-    return JSON.parse(localStorage.getItem('user')+"");
+    return JSON.parse(localStorage.getItem('token')+"");
   }
 
   public signup(user: any) {
@@ -58,12 +58,12 @@ export class AuthService {
     });
   }
 
-  public login(uemail: string, upasswd: string) {
+  public login(email: string, password: string) {
     return this.axiosClient.request({
       method: "post",
       url: 'login',
       data: {
-        uemail, upasswd
+        email, password
       }
     });
   }

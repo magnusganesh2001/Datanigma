@@ -8,6 +8,7 @@ import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { HomeComponent } from './home/home.component';
 import { ReactiveFormsModule } from '@angular/forms';
+
 import { MatButtonModule } from '@angular/material/button';
 import { EmployerComponent } from './employer/employer.component'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -16,6 +17,8 @@ import { MatCardModule } from '@angular/material/card';
 import { MatTableModule } from '@angular/material/table';
 import { JobPostComponent } from './job-post/job-post.component';
 import {MatInputModule} from '@angular/material/input';
+import { EmployersComponent } from './employers/employers.component';
+
 
 @NgModule({
   declarations: [
@@ -26,6 +29,7 @@ import {MatInputModule} from '@angular/material/input';
     EmployerComponent,
     FindJobsComponent,
     JobPostComponent,
+    EmployersComponent,
   ],
   imports: [
     BrowserModule,

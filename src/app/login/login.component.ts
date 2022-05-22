@@ -1,5 +1,6 @@
+import { AuthService } from './../core/services/auth.service';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 
@@ -12,30 +13,27 @@ export class LoginComponent implements OnInit {
 
   public loginForm !:FormGroup;
 
-  constructor( private FormBuilder: FormBuilder, private http : HttpClient, private router: Router) { }
+  constructor( private FormBuilder: FormBuilder, private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
     this.loginForm = this.FormBuilder.group({
-      email: [''],
-      password: ['']
+      email: new FormControl(""),
+      password: new FormControl("")
     })
   }
   login(){
-    this.http.get<any>('http://localhost:3000/signUp')
-    .subscribe(res=>{
-      const user = res.find((a:any)=>{
-        return a.email === this.loginForm.value.email && a.password === this.loginForm.value.password
-      });
-      if(user){
-        alert("Login successfull")
-        this.loginForm.reset()
-        this.router.navigate([''])
-      }
-      else{
-        alert("Invalid email and password")
-      }
-    }, err=>{
-      alert('Something went wrong')
+    if (!this.loginForm.valid) {
+      alert("Please enter your email and password...");
+      return;
+    }
+    const email = this.loginForm.get('email')?.value;
+    const password = this.loginForm.get('password')?.value;
+    this.authService.login(email,password).then(res => {
+      console.log(res);
+      this.authService.setAuthenticated(res.data.token);
+      this.router.navigate(['']);
+    }).catch(err => {
+      alert(err);
     })
   }
 
