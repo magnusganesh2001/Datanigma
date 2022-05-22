@@ -1,3 +1,4 @@
+import { JobPostComponent } from './job-post/job-post.component';
 import { EmployerComponent } from './employer/employer.component';
 import { FindJobsComponent } from './find-jobs/find-jobs.component';
 import { HomeComponent } from './home/home.component';
@@ -11,10 +12,8 @@ const routes: Routes = [
   {path: "login", component:LoginComponent},
   {path: "signup", component:SignupComponent},
   {path: "employer", component:EmployerComponent},
-  { path: '', component: HomeComponent },
-  { path: 'login', component: LoginComponent },
-  { path: 'signup', component: SignupComponent },
-  { path: 'find-job', component: FindJobsComponent },
+  {path: "find-job", component: FindJobsComponent },
+  {path: "job-post", component: JobPostComponent},
 ];
 
 @NgModule({

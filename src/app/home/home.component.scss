@@ -47,7 +47,7 @@
     height: 60px;
     display: flex;
     align-items: center;
-    background-color: #1976d2;
+    background-color: rgba(15, 136, 170, 0.815);;
     color: white;
     font-weight: 600;
     padding: 15px;
@@ -105,7 +105,7 @@
     all: unset;
     border-radius: 4px;
     border: 1px solid #eee;
-    background-color: #fafafa;
+    background-color: rgba(15, 136, 170, 0.815);;
     height: 40px;
     width: 200px;
     margin: 0 8px 16px;
@@ -127,6 +127,7 @@
     width: 258px;
     font-weight: bolder;
     font-size: large;
+    color: white
   }
 
   .card-container .card:not(.highlight-card) {

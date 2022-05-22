@@ -1,0 +1,29 @@
+<div class="postform">
+  <form class="example-form" [formGroup]="jobPostForm">
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Job Title</mat-label>
+      <input type="text" matInput formControlName="jobTitle"/>
+    </mat-form-field>
+    <!-- company name -->
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Company</mat-label>
+      <input type="text" matInput formControlName="Company" />
+    </mat-form-field>
+    <!-- salary -->
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Salary LPA</mat-label>
+      <input type="text" matInput formControlName="salary"/>
+    </mat-form-field>
+    <!-- location -->
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Location</mat-label>
+      <input type="text" matInput formControlName="location"/>
+    </mat-form-field>
+    <!-- discription -->
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Job Discription</mat-label>
+      <input type="text" matInput formControlName="jobDiscription"/>
+    </mat-form-field>
+    <button mat-raised-button type="submit">Post</button>
+  </form>
+</div>
