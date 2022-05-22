@@ -42,7 +42,10 @@ export class JobService {
     const userData = this.authService.getTokenData();
     return this.axiosClient.request({
       method: 'get',
-      url: `all?employer=${userData.id}`
+      url: `employer`,
+      data: {
+        id: userData.id
+      }
     });
   }
 }
