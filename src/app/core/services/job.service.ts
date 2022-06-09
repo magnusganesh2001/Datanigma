@@ -39,12 +39,12 @@ export class JobService {
   }
 
   getCreatedJobs() {
-    const userData = this.authService.getTokenData();
+    const userId = this.authService.getTokenData().id;
     return this.axiosClient.request({
-      method: 'get',
+      method: 'post',
       url: 'employer',
       data: {
-        id: userData.id
+        id: userId
       }
     });
   }

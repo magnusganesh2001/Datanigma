@@ -18,6 +18,7 @@ import { MatTableModule } from '@angular/material/table';
 import { JobPostComponent } from './job-post/job-post.component';
 import {MatInputModule} from '@angular/material/input';
 import { HeaderComponent } from './header/header.component';
+import { ToastrModule } from 'ngx-toastr';
 
 
 @NgModule({
@@ -41,6 +42,7 @@ import { HeaderComponent } from './header/header.component';
     MatCardModule,
     MatTableModule,
     MatInputModule,
+    ToastrModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent]
