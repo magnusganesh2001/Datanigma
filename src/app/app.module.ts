@@ -19,6 +19,7 @@ import { JobPostComponent } from './job-post/job-post.component';
 import {MatInputModule} from '@angular/material/input';
 import { HeaderComponent } from './header/header.component';
 import { ToastrModule } from 'ngx-toastr';
+import { AppliedCandidatesComponent } from './applied-candidates/applied-candidates.component';
 
 
 @NgModule({
@@ -31,6 +32,7 @@ import { ToastrModule } from 'ngx-toastr';
     FindJobsComponent,
     JobPostComponent,
     HeaderComponent,
+    AppliedCandidatesComponent,
   ],
   imports: [
     BrowserModule,

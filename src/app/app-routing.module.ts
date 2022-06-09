@@ -1,3 +1,4 @@
+import { AppComponent } from './app.component';
 import { JobPostComponent } from './job-post/job-post.component';
 import { EmployerComponent } from './employer/employer.component';
 import { AuthGuard } from './core/guards/auth.guard';
@@ -16,6 +17,7 @@ const routes: Routes = [
   {path: "job-post", component: JobPostComponent, canActivate: [EmployerGuard]},
   { path: '', component: HomeComponent, canActivate: [AuthGuard] },
   { path: 'find-job', component: FindJobsComponent, canActivate: [AuthGuard] },
+  {path: "applied-candidates", component: AppComponent, canActivate: [AuthGuard]}
 ];
 
 @NgModule({
