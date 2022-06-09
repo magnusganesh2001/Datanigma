@@ -48,7 +48,7 @@
 
         <ng-container matColumnDef="actions">
           <th mat-header-cell *matHeaderCellDef>Apply</th>
-          <td mat-cell *matCellDef="let element"><button mat-button (click)="applyJob(element._id)"> Apply</button></td>
+          <td mat-cell *matCellDef="let element"><button [disabled]="element.candidates.includes(userId)" mat-button (click)="applyJob(element._id)"> {{ element.candidates.includes(userId) ? 'Applied' : 'Apply' }}</button></td>
         </ng-container>
 
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
