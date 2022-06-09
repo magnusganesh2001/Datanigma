@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { HomeComponent } from './home/home.component';
+import { AppliedJobsComponent } from './applied-jobs/applied-jobs.component';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { MatButtonModule } from '@angular/material/button';
@@ -31,6 +32,7 @@ import { ToastrModule } from 'ngx-toastr';
     FindJobsComponent,
     JobPostComponent,
     HeaderComponent,
+    AppliedJobsComponent
   ],
   imports: [
     BrowserModule,
