@@ -48,4 +48,16 @@ export class JobService {
       }
     });
   }
+
+  applyJob(jobId: any) {
+    const userData = this.authService.getTokenData();
+    return this.axiosClient.request({
+      method: 'post',
+      url: 'apply',
+      data: {
+        candidateId: userData.id,
+        jobId
+      }
+    });
+  }
 }
