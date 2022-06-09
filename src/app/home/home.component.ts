@@ -10,7 +10,11 @@ import { Router } from '@angular/router';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private router:Router, private authService: AuthService){}
+  userType: String;
+
+  constructor(private router:Router, private authService: AuthService){
+    this.userType = authService.getTokenData().type;
+  }
 
   ngOnInit(): void {
   }
