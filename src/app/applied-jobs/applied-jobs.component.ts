@@ -11,28 +11,17 @@ import { AuthService } from '../core/services/auth.service';
 })
 export class AppliedJobsComponent implements OnInit {
 
-  displayedColumns: string[] = ['no', 'title', 'company', 'description', 'salary', 'location', 'actions'];
-  dataSource = [];
+  jobs: any;
   userId: string;
 
   constructor(private authService: AuthService, private jobService: JobService, private router: Router, private toastService: ToastrService) {
     this.jobService.getAllJobs().then(res => {
-      this.dataSource = res.data.jobs;
+      this.jobs = res.data.jobs;
     });
     this.userId = this.authService.getTokenData().id;
   }
 
   ngOnInit(): void {
-  }
-
-  applyJob(jobId: any): void {
-    console.log("opening job page");
-    this.jobService.applyJob(jobId).then(res => {
-      this.toastService.success('Job has been applied successfully!', 'Job');
-      this.router.navigate(['']);
-    }).catch(err => {
-      this.toastService.error(err.response.data.message, 'Job');
-    });
   }
 
 }
