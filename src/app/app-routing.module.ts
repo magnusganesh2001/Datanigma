@@ -1,3 +1,4 @@
+import { AppliedCandidatesComponent } from './applied-candidates/applied-candidates.component';
 import { AppComponent } from './app.component';
 import { JobPostComponent } from './job-post/job-post.component';
 import { EmployerComponent } from './employer/employer.component';
@@ -17,7 +18,7 @@ const routes: Routes = [
   {path: "job-post", component: JobPostComponent, canActivate: [EmployerGuard]},
   { path: '', component: HomeComponent, canActivate: [AuthGuard] },
   { path: 'find-job', component: FindJobsComponent, canActivate: [AuthGuard] },
-  {path: "applied-candidates", component: AppComponent, canActivate: [AuthGuard]}
+  {path: "applied-candidates", component: AppliedCandidatesComponent, canActivate: [AuthGuard]}
 ];
 
 @NgModule({

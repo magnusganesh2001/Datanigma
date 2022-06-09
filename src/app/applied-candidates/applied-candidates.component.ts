@@ -7,6 +7,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AppliedCandidatesComponent implements OnInit {
 
+  displayedColumns: string[] = ['name', 'phone', 'email', 'resume'];
+  dataSource = [];
+
   constructor() { }
 
   ngOnInit(): void {
