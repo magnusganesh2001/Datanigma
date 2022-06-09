@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FindJobsComponent implements OnInit {
 
-  displayedColumns: string[] = ['no', 'title', 'company', 'description', 'salary', 'location'];
+  displayedColumns: string[] = ['no', 'title', 'company', 'description', 'salary', 'location', 'actions'];
   dataSource = [];
 
   constructor(private jobService: JobService) {
