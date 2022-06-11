@@ -18,6 +18,9 @@ export class AppliedJobsComponent implements OnInit {
     this.jobService.getAllJobs().then(res => {
       this.jobs = res.data.jobs;
     });
+    this.jobService.getCandidates().then(res => {
+      console.log(res);
+    });
     this.userId = this.authService.getTokenData().id;
   }
 

@@ -60,4 +60,11 @@ export class JobService {
       }
     });
   }
+
+  getCandidates() {
+    return this.axiosClient.request({
+      method: 'get',
+      url: 'candidates'
+    });
+  }
 }
