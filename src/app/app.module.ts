@@ -8,7 +8,7 @@ import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { HomeComponent } from './home/home.component';
 import { AppliedJobsComponent } from './applied-jobs/applied-jobs.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { MatButtonModule } from '@angular/material/button';
 import { EmployerComponent } from './employer/employer.component'
@@ -20,7 +20,8 @@ import { JobPostComponent } from './job-post/job-post.component';
 import {MatInputModule} from '@angular/material/input';
 import { HeaderComponent } from './header/header.component';
 import { ToastrModule } from 'ngx-toastr';
-
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,7 @@ import { ToastrModule } from 'ngx-toastr';
     FindJobsComponent,
     JobPostComponent,
     HeaderComponent,
-    AppliedJobsComponent
+    AppliedJobsComponent,
   ],
   imports: [
     BrowserModule,
@@ -45,6 +46,9 @@ import { ToastrModule } from 'ngx-toastr';
     MatTableModule,
     MatInputModule,
     ToastrModule.forRoot(),
+    Ng2SearchPipeModule,
+    FormsModule,
+    MatPaginatorModule
   ],
   providers: [],
   bootstrap: [AppComponent]
