@@ -20,7 +20,6 @@ import { JobPostComponent } from './job-post/job-post.component';
 import {MatInputModule} from '@angular/material/input';
 import { HeaderComponent } from './header/header.component';
 import { ToastrModule } from 'ngx-toastr';
-import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { MatPaginatorModule } from '@angular/material/paginator';
 
 @NgModule({
@@ -46,7 +45,6 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     MatTableModule,
     MatInputModule,
     ToastrModule.forRoot(),
-    Ng2SearchPipeModule,
     FormsModule,
     MatPaginatorModule
   ],
