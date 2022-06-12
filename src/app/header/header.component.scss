@@ -104,7 +104,7 @@ svg.material-icons:not(:last-child) {
   all: unset;
   border-radius: 4px;
   border: 1px solid #eee;
-  background-color: rgba(15, 136, 170, 0.815);;
+  background-color: rgba(15, 136, 170, 0.815);
   height: 40px;
   width: 200px;
   margin: 0 8px 16px;
@@ -307,4 +307,8 @@ svg#clouds {
     display: none;
     visibility: hidden;
   }
+}
+.headerbutton{
+  background-color: #0f88aad0;
+  color: #fff;
 }

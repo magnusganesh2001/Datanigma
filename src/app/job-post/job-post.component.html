@@ -14,11 +14,39 @@
       <mat-label>Location</mat-label>
       <input required type="text" matInput formControlName="location"/>
     </mat-form-field>
-    <!-- discription -->
-    <mat-form-field class="example-full-width" appearance="fill">
-      <mat-label>Job Description</mat-label>
-      <input required type="text" matInput formControlName="jobDescription"/>
+    <!-- jobtype     -->
+    <mat-form-field appearance="fill" class="example-full-width">
+      <mat-label>Job Type</mat-label>
+      <mat-select required>
+        <mat-option value="full">Full time</mat-option>
+        <mat-option value="part">Part time</mat-option>
+        <mat-option value="temp">Temporary</mat-option>
+        <mat-option value="intern">Intern</mat-option>
+      </mat-select>
     </mat-form-field>
+    <!-- skills -->
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Skills</mat-label>
+      <input required type="text" matInput placeholder="Skills Required"/>
+    </mat-form-field>
+    <!-- languages -->
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Languages</mat-label>
+      <input required type="text" matInput placeholder="Languages Known"/>
+    </mat-form-field>
+    <!-- discription -->
+    <mat-form-field appearance="fill" class="example-full-width">
+      <mat-label>Job Description</mat-label>
+      <textarea matInput required type="text" formControlName="jobDescription"></textarea>
+    </mat-form-field>
+    <!-- urgent -->
+    <label class="thick" class="example-full-width">Urgent :
+    <mat-radio-group aria-label="Select an option">
+      <mat-radio-button value="yes">Yes</mat-radio-button>
+      <mat-radio-button value="no">No</mat-radio-button>
+    </mat-radio-group>
+    </label>
+
     <button mat-raised-button type="submit">Post</button>
   </form>
 </div>
