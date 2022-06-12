@@ -11,18 +11,39 @@ import { AuthService } from '../core/services/auth.service';
 })
 export class FindJobsComponent implements OnInit {
 
-  displayedColumns: string[] = ['no', 'title', 'company', 'description', 'salary', 'location', 'actions'];
-  dataSource = [];
+  jobs:any;
   userId: string;
+  jobInDisplay = {
+    "_id": "628a38053ce46c9b7cc73f5f",
+    "title": "Data Analyst",
+    "description": "analyze data",
+    "salary": "5",
+    "company": "Ancidern",
+    "location": "online",
+    "employer": "628a220c5b9442540e1ab1d7",
+    "__v": 7,
+    "candidates": [
+        "628a40f423d61a50ba34c4b0",
+        "62a1b05e23b3972278663451"
+    ]
+};
 
   constructor(private authService: AuthService, private jobService: JobService, private router: Router, private toastService: ToastrService) {
     this.jobService.getAllJobs().then(res => {
-      this.dataSource = res.data.jobs;
+      this.jobs = res.data.jobs;
+
+      this.jobInDisplay = this.jobs[0];
     });
     this.userId = this.authService.getTokenData().id;
   }
 
   ngOnInit(): void {
+  }
+
+  openJob(job: any) {
+    console.log(job);
+    this.jobInDisplay = job;
+    
   }
 
   applyJob(jobId: any): void {

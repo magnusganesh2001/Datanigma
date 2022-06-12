@@ -9,18 +9,13 @@ export class EmployerGuard implements CanActivate {
 
   constructor(private authService: AuthService, private router: Router) { }
 
-  canActivate() {
-    if (this.authService.isAuthenticated()) {
-      const data = this.authService.getTokenData();      
-      if(data.type == 'Employer')
-        return true;
-      else
-        return false;
+  canActivate() {   
+    const data = this.authService.getTokenData();   
+    if(data.type == 'Employer') {
+      return true;
     }
     else {
-      this.router.navigate(['login']);
       return false;
     }
   }
-
 }
