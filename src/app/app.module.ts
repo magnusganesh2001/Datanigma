@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { HomeComponent } from './home/home.component';
+import { AppliedJobsComponent } from './applied-jobs/applied-jobs.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
@@ -36,6 +37,7 @@ import {MatRadioModule} from '@angular/material/radio';
     JobPostComponent,
     HeaderComponent,
     AppliedCandidatesComponent,
+    AppliedJobsComponent
   ],
   imports: [
     BrowserModule,
