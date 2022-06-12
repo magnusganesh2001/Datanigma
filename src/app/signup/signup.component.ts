@@ -1,7 +1,5 @@
-import { User } from './../core/models/user.model';
 import { AuthService } from './../core/services/auth.service';
 import { Router } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 
