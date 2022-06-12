@@ -13,17 +13,12 @@ import { MatTableDataSource } from '@angular/material/table';
 })
 export class FindJobsComponent {
   displayedColumns: string[] = [
-    'no',
-    'title',
-    'company',
-    'description',
-    'salary',
-    'location',
-    'actions',
+    'job'
   ];
   dataSource!: MatTableDataSource<JobList>;
   userId: string;
   searchText: string = '';
+  jobInDisplay: JobList | undefined;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
@@ -33,8 +28,793 @@ export class FindJobsComponent {
     private router: Router,
     private toastService: ToastrService
   ) {
+    this.jobInDisplay = undefined;
     this.jobService.getAllJobs().then((res) => {
       const jobList = res.data.jobs;
+      // const jobList = [
+      //   {
+      //     "skills": [],
+      //     "languages": [],
+      //     "benefits": [],
+      //     "_id": "628a38053ce46c9b7cc73f5f",
+      //     "title": "Data Analyst",
+      //     "description": "analyze data",
+      //     "salary": "5",
+      //     "company": "Ancidern",
+      //     "location": "online",
+      //     "employer": "628a220c5b9442540e1ab1d7",
+      //     "__v": 7,
+      //     "candidates": [
+      //         "628a40f423d61a50ba34c4b0",
+      //         "62a1b05e23b3972278663451"
+      //     ]
+      //   },
+      //   {
+      //     "skills": [],
+      //     "languages": [],
+      //     "benefits": [],
+      //     "_id": "628a38053ce46c9b7cc73f5f",
+      //     "title": "Data Analyst",
+      //     "description": "analyze data",
+      //     "salary": "5",
+      //     "company": "Ancidern",
+      //     "location": "online",
+      //     "employer": "628a220c5b9442540e1ab1d7",
+      //     "__v": 7,
+      //     "candidates": [
+      //         "628a40f423d61a50ba34c4b0",
+      //         "62a1b05e23b3972278663451"
+      //     ]
+      //   },
+      //   {
+      //     "skills": [],
+      //     "languages": [],
+      //     "benefits": [],
+      //     "_id": "628a38053ce46c9b7cc73f5f",
+      //     "title": "Data Analyst",
+      //     "description": "analyze data",
+      //     "salary": "5",
+      //     "company": "Ancidern",
+      //     "location": "online",
+      //     "employer": "628a220c5b9442540e1ab1d7",
+      //     "__v": 7,
+      //     "candidates": [
+      //         "628a40f423d61a50ba34c4b0",
+      //         "62a1b05e23b3972278663451"
+      //     ]
+      //   },
+      //   {
+      //     "skills": [],
+      //     "languages": [],
+      //     "benefits": [],
+      //     "_id": "628a38053ce46c9b7cc73f5f",
+      //     "title": "Data Analyst",
+      //     "description": "analyze data",
+      //     "salary": "5",
+      //     "company": "Ancidern",
+      //     "location": "online",
+      //     "employer": "628a220c5b9442540e1ab1d7",
+      //     "__v": 7,
+      //     "candidates": [
+      //         "628a40f423d61a50ba34c4b0",
+      //         "62a1b05e23b3972278663451"
+      //     ]
+      //   },
+      //   {
+      //     "skills": [],
+      //     "languages": [],
+      //     "benefits": [],
+      //     "_id": "628a38053ce46c9b7cc73f5f",
+      //     "title": "Data Analyst",
+      //     "description": "analyze data",
+      //     "salary": "5",
+      //     "company": "Ancidern",
+      //     "location": "online",
+      //     "employer": "628a220c5b9442540e1ab1d7",
+      //     "__v": 7,
+      //     "candidates": [
+      //         "628a40f423d61a50ba34c4b0",
+      //         "62a1b05e23b3972278663451"
+      //     ]
+      //   },
+      //   {
+      //     "skills": [],
+      //     "languages": [],
+      //     "benefits": [],
+      //     "_id": "628a38053ce46c9b7cc73f5f",
+      //     "title": "Data Analyst",
+      //     "description": "analyze data",
+      //     "salary": "5",
+      //     "company": "Ancidern",
+      //     "location": "online",
+      //     "employer": "628a220c5b9442540e1ab1d7",
+      //     "__v": 7,
+      //     "candidates": [
+      //         "628a40f423d61a50ba34c4b0",
+      //         "62a1b05e23b3972278663451"
+      //     ]
+      //   },
+      //   {
+      //     "skills": [],
+      //     "languages": [],
+      //     "benefits": [],
+      //     "_id": "628a38053ce46c9b7cc73f5f",
+      //     "title": "Data Analyst",
+      //     "description": "analyze data",
+      //     "salary": "5",
+      //     "company": "Ancidern",
+      //     "location": "online",
+      //     "employer": "628a220c5b9442540e1ab1d7",
+      //     "__v": 7,
+      //     "candidates": [
+      //         "628a40f423d61a50ba34c4b0",
+      //         "62a1b05e23b3972278663451"
+      //     ]
+      //   },
+      //   {
+      //     "skills": [],
+      //     "languages": [],
+      //     "benefits": [],
+      //     "_id": "628a38053ce46c9b7cc73f5f",
+      //     "title": "Data Analyst",
+      //     "description": "analyze data",
+      //     "salary": "5",
+      //     "company": "Ancidern",
+      //     "location": "online",
+      //     "employer": "628a220c5b9442540e1ab1d7",
+      //     "__v": 7,
+      //     "candidates": [
+      //         "628a40f423d61a50ba34c4b0",
+      //         "62a1b05e23b3972278663451"
+      //     ]
+      //   },
+      //   {
+      //     "skills": [],
+      //     "languages": [],
+      //     "benefits": [],
+      //     "_id": "628a38053ce46c9b7cc73f5f",
+      //     "title": "Data Analyst",
+      //     "description": "analyze data",
+      //     "salary": "5",
+      //     "company": "Ancidern",
+      //     "location": "online",
+      //     "employer": "628a220c5b9442540e1ab1d7",
+      //     "__v": 7,
+      //     "candidates": [
+      //         "628a40f423d61a50ba34c4b0",
+      //         "62a1b05e23b3972278663451"
+      //     ]
+      //   },
+      //   {
+      //     "skills": [],
+      //     "languages": [],
+      //     "benefits": [],
+      //     "_id": "628a38053ce46c9b7cc73f5f",
+      //     "title": "Data Analyst",
+      //     "description": "analyze data",
+      //     "salary": "5",
+      //     "company": "Ancidern",
+      //     "location": "online",
+      //     "employer": "628a220c5b9442540e1ab1d7",
+      //     "__v": 7,
+      //     "candidates": [
+      //         "628a40f423d61a50ba34c4b0",
+      //         "62a1b05e23b3972278663451"
+      //     ]
+      //   },
+      //   {
+      //     "skills": [],
+      //     "languages": [],
+      //     "benefits": [],
+      //     "_id": "628a38053ce46c9b7cc73f5f",
+      //     "title": "Data Analyst",
+      //     "description": "analyze data",
+      //     "salary": "5",
+      //     "company": "Ancidern",
+      //     "location": "online",
+      //     "employer": "628a220c5b9442540e1ab1d7",
+      //     "__v": 7,
+      //     "candidates": [
+      //         "628a40f423d61a50ba34c4b0",
+      //         "62a1b05e23b3972278663451"
+      //     ]
+      //   },
+      //   {
+      //     "skills": [],
+      //     "languages": [],
+      //     "benefits": [],
+      //     "_id": "628a38053ce46c9b7cc73f5f",
+      //     "title": "Data Analyst",
+      //     "description": "analyze data",
+      //     "salary": "5",
+      //     "company": "Ancidern",
+      //     "location": "online",
+      //     "employer": "628a220c5b9442540e1ab1d7",
+      //     "__v": 7,
+      //     "candidates": [
+      //         "628a40f423d61a50ba34c4b0",
+      //         "62a1b05e23b3972278663451"
+      //     ]
+      //   },
+      //   {
+      //     "skills": [],
+      //     "languages": [],
+      //     "benefits": [],
+      //     "_id": "628a38053ce46c9b7cc73f5f",
+      //     "title": "Data Analyst",
+      //     "description": "analyze data",
+      //     "salary": "5",
+      //     "company": "Ancidern",
+      //     "location": "online",
+      //     "employer": "628a220c5b9442540e1ab1d7",
+      //     "__v": 7,
+      //     "candidates": [
+      //         "628a40f423d61a50ba34c4b0",
+      //         "62a1b05e23b3972278663451"
+      //     ]
+      //   },
+      //   {
+      //     "skills": [],
+      //     "languages": [],
+      //     "benefits": [],
+      //     "_id": "628a38053ce46c9b7cc73f5f",
+      //     "title": "Data Analyst",
+      //     "description": "analyze data",
+      //     "salary": "5",
+      //     "company": "Ancidern",
+      //     "location": "online",
+      //     "employer": "628a220c5b9442540e1ab1d7",
+      //     "__v": 7,
+      //     "candidates": [
+      //         "628a40f423d61a50ba34c4b0",
+      //         "62a1b05e23b3972278663451"
+      //     ]
+      //   },
+      //   {
+      //     "skills": [],
+      //     "languages": [],
+      //     "benefits": [],
+      //     "_id": "628a38053ce46c9b7cc73f5f",
+      //     "title": "Data Analyst",
+      //     "description": "analyze data",
+      //     "salary": "5",
+      //     "company": "Ancidern",
+      //     "location": "online",
+      //     "employer": "628a220c5b9442540e1ab1d7",
+      //     "__v": 7,
+      //     "candidates": [
+      //         "628a40f423d61a50ba34c4b0",
+      //         "62a1b05e23b3972278663451"
+      //     ]
+      //   },
+      //   {
+      //     "skills": [],
+      //     "languages": [],
+      //     "benefits": [],
+      //     "_id": "628a38053ce46c9b7cc73f5f",
+      //     "title": "Data Analyst",
+      //     "description": "analyze data",
+      //     "salary": "5",
+      //     "company": "Ancidern",
+      //     "location": "online",
+      //     "employer": "628a220c5b9442540e1ab1d7",
+      //     "__v": 7,
+      //     "candidates": [
+      //         "628a40f423d61a50ba34c4b0",
+      //         "62a1b05e23b3972278663451"
+      //     ]
+      //   },
+      //   {
+      //     "skills": [],
+      //     "languages": [],
+      //     "benefits": [],
+      //     "_id": "628a38053ce46c9b7cc73f5f",
+      //     "title": "Data Analyst",
+      //     "description": "analyze data",
+      //     "salary": "5",
+      //     "company": "Ancidern",
+      //     "location": "online",
+      //     "employer": "628a220c5b9442540e1ab1d7",
+      //     "__v": 7,
+      //     "candidates": [
+      //         "628a40f423d61a50ba34c4b0",
+      //         "62a1b05e23b3972278663451"
+      //     ]
+      //   },
+      //   {
+      //     "skills": [],
+      //     "languages": [],
+      //     "benefits": [],
+      //     "_id": "628a38053ce46c9b7cc73f5f",
+      //     "title": "Data Analyst",
+      //     "description": "analyze data",
+      //     "salary": "5",
+      //     "company": "Ancidern",
+      //     "location": "online",
+      //     "employer": "628a220c5b9442540e1ab1d7",
+      //     "__v": 7,
+      //     "candidates": [
+      //         "628a40f423d61a50ba34c4b0",
+      //         "62a1b05e23b3972278663451"
+      //     ]
+      //   },
+      //   {
+      //     "skills": [],
+      //     "languages": [],
+      //     "benefits": [],
+      //     "_id": "628a38053ce46c9b7cc73f5f",
+      //     "title": "Data Analyst",
+      //     "description": "analyze data",
+      //     "salary": "5",
+      //     "company": "Ancidern",
+      //     "location": "online",
+      //     "employer": "628a220c5b9442540e1ab1d7",
+      //     "__v": 7,
+      //     "candidates": [
+      //         "628a40f423d61a50ba34c4b0",
+      //         "62a1b05e23b3972278663451"
+      //     ]
+      //   },
+      //   {
+      //     "skills": [],
+      //     "languages": [],
+      //     "benefits": [],
+      //     "_id": "628a38053ce46c9b7cc73f5f",
+      //     "title": "Data Analyst",
+      //     "description": "analyze data",
+      //     "salary": "5",
+      //     "company": "Ancidern",
+      //     "location": "online",
+      //     "employer": "628a220c5b9442540e1ab1d7",
+      //     "__v": 7,
+      //     "candidates": [
+      //         "628a40f423d61a50ba34c4b0",
+      //         "62a1b05e23b3972278663451"
+      //     ]
+      //   },
+      //   {
+      //     "skills": [],
+      //     "languages": [],
+      //     "benefits": [],
+      //     "_id": "628a38053ce46c9b7cc73f5f",
+      //     "title": "Data Analyst",
+      //     "description": "analyze data",
+      //     "salary": "5",
+      //     "company": "Ancidern",
+      //     "location": "online",
+      //     "employer": "628a220c5b9442540e1ab1d7",
+      //     "__v": 7,
+      //     "candidates": [
+      //         "628a40f423d61a50ba34c4b0",
+      //         "62a1b05e23b3972278663451"
+      //     ]
+      //   },
+      //   {
+      //     "skills": [],
+      //     "languages": [],
+      //     "benefits": [],
+      //     "_id": "628a38053ce46c9b7cc73f5f",
+      //     "title": "Data Analyst",
+      //     "description": "analyze data",
+      //     "salary": "5",
+      //     "company": "Ancidern",
+      //     "location": "online",
+      //     "employer": "628a220c5b9442540e1ab1d7",
+      //     "__v": 7,
+      //     "candidates": [
+      //         "628a40f423d61a50ba34c4b0",
+      //         "62a1b05e23b3972278663451"
+      //     ]
+      //   },
+      //   {
+      //     "skills": [],
+      //     "languages": [],
+      //     "benefits": [],
+      //     "_id": "628a38053ce46c9b7cc73f5f",
+      //     "title": "Data Analyst",
+      //     "description": "analyze data",
+      //     "salary": "5",
+      //     "company": "Ancidern",
+      //     "location": "online",
+      //     "employer": "628a220c5b9442540e1ab1d7",
+      //     "__v": 7,
+      //     "candidates": [
+      //         "628a40f423d61a50ba34c4b0",
+      //         "62a1b05e23b3972278663451"
+      //     ]
+      //   },
+      //   {
+      //     "skills": [],
+      //     "languages": [],
+      //     "benefits": [],
+      //     "_id": "628a38053ce46c9b7cc73f5f",
+      //     "title": "Data Analyst",
+      //     "description": "analyze data",
+      //     "salary": "5",
+      //     "company": "Ancidern",
+      //     "location": "online",
+      //     "employer": "628a220c5b9442540e1ab1d7",
+      //     "__v": 7,
+      //     "candidates": [
+      //         "628a40f423d61a50ba34c4b0",
+      //         "62a1b05e23b3972278663451"
+      //     ]
+      //   },
+      //   {
+      //     "skills": [],
+      //     "languages": [],
+      //     "benefits": [],
+      //     "_id": "628a38053ce46c9b7cc73f5f",
+      //     "title": "Data Analyst",
+      //     "description": "analyze data",
+      //     "salary": "5",
+      //     "company": "Ancidern",
+      //     "location": "online",
+      //     "employer": "628a220c5b9442540e1ab1d7",
+      //     "__v": 7,
+      //     "candidates": [
+      //         "628a40f423d61a50ba34c4b0",
+      //         "62a1b05e23b3972278663451"
+      //     ]
+      //   },
+      //   {
+      //     "skills": [],
+      //     "languages": [],
+      //     "benefits": [],
+      //     "_id": "628a38053ce46c9b7cc73f5f",
+      //     "title": "Data Analyst",
+      //     "description": "analyze data",
+      //     "salary": "5",
+      //     "company": "Ancidern",
+      //     "location": "online",
+      //     "employer": "628a220c5b9442540e1ab1d7",
+      //     "__v": 7,
+      //     "candidates": [
+      //         "628a40f423d61a50ba34c4b0",
+      //         "62a1b05e23b3972278663451"
+      //     ]
+      //   },
+      //   {
+      //     "skills": [],
+      //     "languages": [],
+      //     "benefits": [],
+      //     "_id": "628a38053ce46c9b7cc73f5f",
+      //     "title": "Data Analyst",
+      //     "description": "analyze data",
+      //     "salary": "5",
+      //     "company": "Ancidern",
+      //     "location": "online",
+      //     "employer": "628a220c5b9442540e1ab1d7",
+      //     "__v": 7,
+      //     "candidates": [
+      //         "628a40f423d61a50ba34c4b0",
+      //         "62a1b05e23b3972278663451"
+      //     ]
+      //   },
+      //   {
+      //     "skills": [],
+      //     "languages": [],
+      //     "benefits": [],
+      //     "_id": "628a38053ce46c9b7cc73f5f",
+      //     "title": "Data Analyst",
+      //     "description": "analyze data",
+      //     "salary": "5",
+      //     "company": "Ancidern",
+      //     "location": "online",
+      //     "employer": "628a220c5b9442540e1ab1d7",
+      //     "__v": 7,
+      //     "candidates": [
+      //         "628a40f423d61a50ba34c4b0",
+      //         "62a1b05e23b3972278663451"
+      //     ]
+      //   },
+      //   {
+      //     "skills": [],
+      //     "languages": [],
+      //     "benefits": [],
+      //     "_id": "628a38053ce46c9b7cc73f5f",
+      //     "title": "Data Analyst",
+      //     "description": "analyze data",
+      //     "salary": "5",
+      //     "company": "Ancidern",
+      //     "location": "online",
+      //     "employer": "628a220c5b9442540e1ab1d7",
+      //     "__v": 7,
+      //     "candidates": [
+      //         "628a40f423d61a50ba34c4b0",
+      //         "62a1b05e23b3972278663451"
+      //     ]
+      //   },
+      //   {
+      //     "skills": [],
+      //     "languages": [],
+      //     "benefits": [],
+      //     "_id": "628a38053ce46c9b7cc73f5f",
+      //     "title": "Data Analyst",
+      //     "description": "analyze data",
+      //     "salary": "5",
+      //     "company": "Ancidern",
+      //     "location": "online",
+      //     "employer": "628a220c5b9442540e1ab1d7",
+      //     "__v": 7,
+      //     "candidates": [
+      //         "628a40f423d61a50ba34c4b0",
+      //         "62a1b05e23b3972278663451"
+      //     ]
+      //   },
+      //   {
+      //     "skills": [],
+      //     "languages": [],
+      //     "benefits": [],
+      //     "_id": "628a38053ce46c9b7cc73f5f",
+      //     "title": "Data Analyst",
+      //     "description": "analyze data",
+      //     "salary": "5",
+      //     "company": "Ancidern",
+      //     "location": "online",
+      //     "employer": "628a220c5b9442540e1ab1d7",
+      //     "__v": 7,
+      //     "candidates": [
+      //         "628a40f423d61a50ba34c4b0",
+      //         "62a1b05e23b3972278663451"
+      //     ]
+      //   },
+      //   {
+      //     "skills": [],
+      //     "languages": [],
+      //     "benefits": [],
+      //     "_id": "628a38053ce46c9b7cc73f5f",
+      //     "title": "Data Analyst",
+      //     "description": "analyze data",
+      //     "salary": "5",
+      //     "company": "Ancidern",
+      //     "location": "online",
+      //     "employer": "628a220c5b9442540e1ab1d7",
+      //     "__v": 7,
+      //     "candidates": [
+      //         "628a40f423d61a50ba34c4b0",
+      //         "62a1b05e23b3972278663451"
+      //     ]
+      //   },
+      //   {
+      //     "skills": [],
+      //     "languages": [],
+      //     "benefits": [],
+      //     "_id": "628a38053ce46c9b7cc73f5f",
+      //     "title": "Data Analyst",
+      //     "description": "analyze data",
+      //     "salary": "5",
+      //     "company": "Ancidern",
+      //     "location": "online",
+      //     "employer": "628a220c5b9442540e1ab1d7",
+      //     "__v": 7,
+      //     "candidates": [
+      //         "628a40f423d61a50ba34c4b0",
+      //         "62a1b05e23b3972278663451"
+      //     ]
+      //   },
+      //   {
+      //     "skills": [],
+      //     "languages": [],
+      //     "benefits": [],
+      //     "_id": "628a38053ce46c9b7cc73f5f",
+      //     "title": "Data Analyst",
+      //     "description": "analyze data",
+      //     "salary": "5",
+      //     "company": "Ancidern",
+      //     "location": "online",
+      //     "employer": "628a220c5b9442540e1ab1d7",
+      //     "__v": 7,
+      //     "candidates": [
+      //         "628a40f423d61a50ba34c4b0",
+      //         "62a1b05e23b3972278663451"
+      //     ]
+      //   },
+      //   {
+      //     "skills": [],
+      //     "languages": [],
+      //     "benefits": [],
+      //     "_id": "628a38053ce46c9b7cc73f5f",
+      //     "title": "Data Analyst",
+      //     "description": "analyze data",
+      //     "salary": "5",
+      //     "company": "Ancidern",
+      //     "location": "online",
+      //     "employer": "628a220c5b9442540e1ab1d7",
+      //     "__v": 7,
+      //     "candidates": [
+      //         "628a40f423d61a50ba34c4b0",
+      //         "62a1b05e23b3972278663451"
+      //     ]
+      //   },
+      //   {
+      //     "skills": [],
+      //     "languages": [],
+      //     "benefits": [],
+      //     "_id": "628a38053ce46c9b7cc73f5f",
+      //     "title": "Data Analyst",
+      //     "description": "analyze data",
+      //     "salary": "5",
+      //     "company": "Ancidern",
+      //     "location": "online",
+      //     "employer": "628a220c5b9442540e1ab1d7",
+      //     "__v": 7,
+      //     "candidates": [
+      //         "628a40f423d61a50ba34c4b0",
+      //         "62a1b05e23b3972278663451"
+      //     ]
+      //   },
+      //   {
+      //     "skills": [],
+      //     "languages": [],
+      //     "benefits": [],
+      //     "_id": "628a38053ce46c9b7cc73f5f",
+      //     "title": "Data Analyst",
+      //     "description": "analyze data",
+      //     "salary": "5",
+      //     "company": "Ancidern",
+      //     "location": "online",
+      //     "employer": "628a220c5b9442540e1ab1d7",
+      //     "__v": 7,
+      //     "candidates": [
+      //         "628a40f423d61a50ba34c4b0",
+      //         "62a1b05e23b3972278663451"
+      //     ]
+      //   },
+      //   {
+      //     "skills": [],
+      //     "languages": [],
+      //     "benefits": [],
+      //     "_id": "628a38053ce46c9b7cc73f5f",
+      //     "title": "Data Analyst",
+      //     "description": "analyze data",
+      //     "salary": "5",
+      //     "company": "Ancidern",
+      //     "location": "online",
+      //     "employer": "628a220c5b9442540e1ab1d7",
+      //     "__v": 7,
+      //     "candidates": [
+      //         "628a40f423d61a50ba34c4b0",
+      //         "62a1b05e23b3972278663451"
+      //     ]
+      //   },
+      //   {
+      //     "skills": [],
+      //     "languages": [],
+      //     "benefits": [],
+      //     "_id": "628a38053ce46c9b7cc73f5f",
+      //     "title": "Data Analyst",
+      //     "description": "analyze data",
+      //     "salary": "5",
+      //     "company": "Ancidern",
+      //     "location": "online",
+      //     "employer": "628a220c5b9442540e1ab1d7",
+      //     "__v": 7,
+      //     "candidates": [
+      //         "628a40f423d61a50ba34c4b0",
+      //         "62a1b05e23b3972278663451"
+      //     ]
+      //   },
+      //   {
+      //     "skills": [],
+      //     "languages": [],
+      //     "benefits": [],
+      //     "_id": "628a38053ce46c9b7cc73f5f",
+      //     "title": "Data Analyst",
+      //     "description": "analyze data",
+      //     "salary": "5",
+      //     "company": "Ancidern",
+      //     "location": "online",
+      //     "employer": "628a220c5b9442540e1ab1d7",
+      //     "__v": 7,
+      //     "candidates": [
+      //         "628a40f423d61a50ba34c4b0",
+      //         "62a1b05e23b3972278663451"
+      //     ]
+      //   },
+      //   {
+      //     "skills": [],
+      //     "languages": [],
+      //     "benefits": [],
+      //     "_id": "628a38053ce46c9b7cc73f5f",
+      //     "title": "Data Analyst",
+      //     "description": "analyze data",
+      //     "salary": "5",
+      //     "company": "Ancidern",
+      //     "location": "online",
+      //     "employer": "628a220c5b9442540e1ab1d7",
+      //     "__v": 7,
+      //     "candidates": [
+      //         "628a40f423d61a50ba34c4b0",
+      //         "62a1b05e23b3972278663451"
+      //     ]
+      //   },
+      //   {
+      //     "skills": [],
+      //     "languages": [],
+      //     "benefits": [],
+      //     "_id": "628a38053ce46c9b7cc73f5f",
+      //     "title": "Data Analyst",
+      //     "description": "analyze data",
+      //     "salary": "5",
+      //     "company": "Ancidern",
+      //     "location": "online",
+      //     "employer": "628a220c5b9442540e1ab1d7",
+      //     "__v": 7,
+      //     "candidates": [
+      //         "628a40f423d61a50ba34c4b0",
+      //         "62a1b05e23b3972278663451"
+      //     ]
+      //   },
+      //   {
+      //     "skills": [],
+      //     "languages": [],
+      //     "benefits": [],
+      //     "_id": "628a38053ce46c9b7cc73f5f",
+      //     "title": "Data Analyst",
+      //     "description": "analyze data",
+      //     "salary": "5",
+      //     "company": "Ancidern",
+      //     "location": "online",
+      //     "employer": "628a220c5b9442540e1ab1d7",
+      //     "__v": 7,
+      //     "candidates": [
+      //         "628a40f423d61a50ba34c4b0",
+      //         "62a1b05e23b3972278663451"
+      //     ]
+      //   },
+      //   {
+      //     "skills": [],
+      //     "languages": [],
+      //     "benefits": [],
+      //     "_id": "628a38053ce46c9b7cc73f5f",
+      //     "title": "Data Analyst",
+      //     "description": "analyze data",
+      //     "salary": "5",
+      //     "company": "Ancidern",
+      //     "location": "online",
+      //     "employer": "628a220c5b9442540e1ab1d7",
+      //     "__v": 7,
+      //     "candidates": [
+      //         "628a40f423d61a50ba34c4b0",
+      //         "62a1b05e23b3972278663451"
+      //     ]
+      //   },
+      //   {
+      //     "skills": [],
+      //     "languages": [],
+      //     "benefits": [],
+      //     "_id": "628a38053ce46c9b7cc73f5f",
+      //     "title": "Data Analyst",
+      //     "description": "analyze data",
+      //     "salary": "5",
+      //     "company": "Ancidern",
+      //     "location": "online",
+      //     "employer": "628a220c5b9442540e1ab1d7",
+      //     "__v": 7,
+      //     "candidates": [
+      //         "628a40f423d61a50ba34c4b0",
+      //         "62a1b05e23b3972278663451"
+      //     ]
+      //   },
+      //   {
+      //     "skills": [],
+      //     "languages": [],
+      //     "benefits": [],
+      //     "_id": "628a38053ce46c9b7cc73f5f",
+      //     "title": "Data Analyst",
+      //     "description": "analyze data",
+      //     "salary": "5",
+      //     "company": "Ancidern",
+      //     "location": "online",
+      //     "employer": "628a220c5b9442540e1ab1d7",
+      //     "__v": 7,
+      //     "candidates": [
+      //         "628a40f423d61a50ba34c4b0",
+      //         "62a1b05e23b3972278663451"
+      //     ]
+      //   },
+      // ];
       this.dataSource = new MatTableDataSource<JobList>(jobList);
       this.dataSource.paginator = this.paginator;
     });
@@ -44,7 +824,11 @@ export class FindJobsComponent {
   applyFilter() {
     const filterString = this.searchText.trim().toLowerCase();
     this.dataSource.filter = filterString;
-    console.log('filtering...');
+    this.jobInDisplay = undefined;
+  }
+
+  openJob(job: JobList) {
+    this.jobInDisplay = job;
   }
 
   applyJob(jobId: any): void {
