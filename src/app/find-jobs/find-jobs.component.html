@@ -58,10 +58,30 @@
         <div class="col sticky">
           <div class="col" *ngIf="jobInDisplay">
             <h1>{{ jobInDisplay.company }}</h1>
+            <h2 *ngIf="jobInDisplay.urgent">Urgent</h2>
+            <h2 *ngIf="jobInDisplay.jobType">{{ jobInDisplay.jobType }}</h2>
             <h2>{{ jobInDisplay.title }}</h2>
             <h3>{{ jobInDisplay.location }}</h3>
             <h3>{{ jobInDisplay.salary }}</h3>
             <h3>{{ jobInDisplay.description }}</h3>
+            <div *ngIf="jobInDisplay.skills.length > 0">
+              <h2>Skills</h2>
+              <ul>
+                <li *ngFor="let skill in jobInDisplay.skills">skill</li>
+              </ul>
+            </div>
+            <div *ngIf="jobInDisplay.languages.length > 0">
+              <h2>Languages Known</h2>
+              <ul>
+                <li *ngFor="let language in jobInDisplay.languages">language</li>
+              </ul>
+            </div>
+            <div *ngIf="jobInDisplay.benefits.length > 0">
+              <h2>Benefits</h2>
+              <ul>
+                <li *ngFor="let benefit in jobInDisplay.benefits">benefit</li>
+              </ul>
+            </div>
             <button mat-raised-button>Apply</button>
           </div>
           <div *ngIf="!jobInDisplay">Select a job to view details...</div>

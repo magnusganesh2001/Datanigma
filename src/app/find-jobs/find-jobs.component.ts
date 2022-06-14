@@ -74,5 +74,6 @@ export interface JobList {
   location: string;
   employer: string;
   candidates: string[];
-  // "urgent": boolean;
+  urgent: boolean;
+  jobType: string;
 }
