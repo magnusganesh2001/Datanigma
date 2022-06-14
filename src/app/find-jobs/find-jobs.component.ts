@@ -48,12 +48,6 @@ export class FindJobsComponent {
     this.jobInDisplay = job;
   }
 
-  openJob(job: any) {
-    console.log(job);
-    this.jobInDisplay = job;
-    
-  }
-
   applyJob(jobId: any): void {
     console.log('opening job page');
     this.jobService
