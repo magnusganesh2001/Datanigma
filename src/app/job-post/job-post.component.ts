@@ -24,6 +24,11 @@ export class JobPostComponent implements OnInit {
       jobDescription: new FormControl(''),
       salary: new FormControl(''),
       location: new FormControl(''),
+      jobType: new FormControl(''),
+      skills: new FormControl(''),
+      languages: new FormControl(''),
+      benefits: new FormControl(''),
+      urgent: new FormControl('')
     })
   }
 
@@ -39,7 +44,13 @@ export class JobPostComponent implements OnInit {
       salary: this.jobPostForm.get('salary')?.value,
       company: userData.company,
       location: this.jobPostForm.get('location')?.value,
-      employer: userData.id
+      employer: userData.id,
+      jobType: this.jobPostForm.get('jobType')?.value,
+      skills: this.jobPostForm.get('skills')?.value.trim().split(","),
+      languages: this.jobPostForm.get('languages')?.value.trim().split(","),
+      benefits: this.jobPostForm.get('benefits')?.value.trim().split(","),
+      urgent: Boolean( this.jobPostForm.get('urgent')?.value)
+      
     }
 
     this.jobService.createJob(job).then(res => {
