@@ -7,7 +7,7 @@
     </mat-card-title-group>
     <mat-card-content>
       <div class="row">
-        <input class="form-control" type="text" [(ngModel)]="searchText" (keyup)="applyFilter()" autocomplete="off"
+        <input class="form-control" type="text" (keyup)="applyFilter()" [(ngModel)]="searchText" autocomplete="off"
           placeholder="Search by job title, position, location ..." />
       </div>
     </mat-card-content>
