@@ -10,8 +10,8 @@
     <mat-card-content>
       <div class="row">
         <div class="col">
-          <div *ngFor="let job of jobs">
-            <div class="card" style="width: 90%; margin: auto; cursor: pointer;" (click)="openJob(job)">
+          <div *ngFor="let job of jobs" class="hovereffect">
+            <div class="card" style="width: 90%; margin: auto; cursor: pointer;" (click)="openJob(job)" class="effect">
               <div class="card-body">
                 <h2 class="card-title">{{ job.title }}</h2>
                 <h3 class="card-subtitle text-muted">{{ job.company }}</h3>
