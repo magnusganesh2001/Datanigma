@@ -7,7 +7,7 @@
     <!-- salary -->
     <mat-form-field class="example-full-width" appearance="fill">
       <mat-label>Salary LPA</mat-label>
-      <input required type="text" matInput formControlName="salary"/>
+      <input required type="text" matInput formControlName="salary" placeholder="LPA in Rs"/>
     </mat-form-field>
     <!-- location -->
     <mat-form-field class="example-full-width" appearance="fill">
@@ -17,7 +17,7 @@
     <!-- jobtype     -->
     <mat-form-field appearance="fill" class="example-full-width">
       <mat-label>Job Type</mat-label>
-      <mat-select required>
+      <mat-select required formControlName="jobType">
         <mat-option value="full">Full time</mat-option>
         <mat-option value="part">Part time</mat-option>
         <mat-option value="temp">Temporary</mat-option>
@@ -27,12 +27,17 @@
     <!-- skills -->
     <mat-form-field class="example-full-width" appearance="fill">
       <mat-label>Skills</mat-label>
-      <input required type="text" matInput placeholder="Skills Required"/>
+      <input required type="text" matInput placeholder="Skills seperated by ," formControlName="skills"/>
     </mat-form-field>
     <!-- languages -->
     <mat-form-field class="example-full-width" appearance="fill">
       <mat-label>Languages</mat-label>
-      <input required type="text" matInput placeholder="Languages Known"/>
+      <input required type="text" matInput placeholder="Languages seperated by ," formControlName="languages"/>
+    </mat-form-field>
+    <!-- benefits -->
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Benefits</mat-label>
+      <input required type="text" matInput placeholder="Benefits seperated by ," formControlName="benefits"/>
     </mat-form-field>
     <!-- discription -->
     <mat-form-field appearance="fill" class="example-full-width">
@@ -41,9 +46,9 @@
     </mat-form-field>
     <!-- urgent -->
     <label class="thick" class="example-full-width">Urgent :
-    <mat-radio-group aria-label="Select an option">
-      <mat-radio-button value="yes">Yes</mat-radio-button>
-      <mat-radio-button value="no">No</mat-radio-button>
+    <mat-radio-group aria-label="Select an option" formControlName="urgent">
+      <mat-radio-button value="true">Yes</mat-radio-button>
+      <mat-radio-button value="false">No</mat-radio-button>
     </mat-radio-group>
     </label>
 

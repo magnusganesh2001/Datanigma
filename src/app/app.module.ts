@@ -8,7 +8,8 @@ import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { HomeComponent } from './home/home.component';
 import { AppliedJobsComponent } from './applied-jobs/applied-jobs.component';
-import { ReactiveFormsModule } from '@angular/forms';
+
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
 import { EmployerComponent } from './employer/employer.component'
@@ -20,11 +21,10 @@ import { JobPostComponent } from './job-post/job-post.component';
 import { MatInputModule } from '@angular/material/input';
 import { HeaderComponent } from './header/header.component';
 import { ToastrModule } from 'ngx-toastr';
+import { MatPaginatorModule } from '@angular/material/paginator';
 import { AppliedCandidatesComponent } from './applied-candidates/applied-candidates.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import {MatRadioModule} from '@angular/material/radio';
-
-
+import { MatRadioModule } from '@angular/material/radio';
 
 @NgModule({
   declarations: [
@@ -36,8 +36,8 @@ import {MatRadioModule} from '@angular/material/radio';
     FindJobsComponent,
     JobPostComponent,
     HeaderComponent,
+    AppliedJobsComponent,
     AppliedCandidatesComponent,
-    AppliedJobsComponent
   ],
   imports: [
     BrowserModule,
@@ -53,6 +53,8 @@ import {MatRadioModule} from '@angular/material/radio';
     MatSelectModule,
     MatRadioModule,
     ToastrModule.forRoot(),
+    FormsModule,
+    MatPaginatorModule
   ],
   providers: [],
   bootstrap: [AppComponent]
