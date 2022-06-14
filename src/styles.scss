@@ -29,3 +29,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   opacity: 50%;
   color: #fff;
 }
+
+body::-webkit-scrollbar {
+  width: 0;
+}
