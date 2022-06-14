@@ -30,12 +30,18 @@ export class FindJobsComponent {
     private toastService: ToastrService
   ) {
     this.jobInDisplay = undefined;
+    this.userId = this.authService.getTokenData().id;
     this.jobService.getAllJobs().then((res) => {
-      const jobList = res.data.jobs;
+      let jobList: any[] = res.data.jobs;
+      jobList.forEach(job =>{
+        if (job.candidates.includes(this.userId)) 
+          job['applied'] = true;
+        else
+          job['applied'] = false;
+      });
       this.dataSource = new MatTableDataSource<JobList>(jobList);
       this.dataSource.paginator = this.paginator;
     });
-    this.userId = this.authService.getTokenData().id;
   }
 
   applyFilter() {
@@ -49,7 +55,6 @@ export class FindJobsComponent {
   }
 
   applyJob(jobId: any): void {
-    console.log('opening job page');
     this.jobService
       .applyJob(jobId)
       .then((res) => {
@@ -76,4 +81,5 @@ export interface JobList {
   candidates: string[];
   urgent: boolean;
   jobType: string;
+  applied: boolean;
 }
