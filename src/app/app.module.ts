@@ -25,6 +25,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { AppliedCandidatesComponent } from './applied-candidates/applied-candidates.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatRadioModule } from '@angular/material/radio';
+import { CandidateProfileComponent } from './candidate-profile/candidate-profile.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { MatRadioModule } from '@angular/material/radio';
     HeaderComponent,
     AppliedJobsComponent,
     AppliedCandidatesComponent,
+    CandidateProfileComponent,
   ],
   imports: [
     BrowserModule,

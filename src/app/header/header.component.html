@@ -1,7 +1,7 @@
 <div class="toolbar" role="banner">
   <span [routerLink]="''" style="cursor: pointer;">Jobskart</span>
     <div class="spacer"></div>
-    <button  mat-flat-button *ngIf="userType == 'Seeker' && loggedIn" routerLink="/find-job" routerLinkActive="router-link-active" class="headerbutton">
+    <button  mat-flat-button *ngIf="userType == 'Seeker' && loggedIn" routerLink="/applied-jobs" routerLinkActive="router-link-active" class="headerbutton">
       <span>Applied Jobs</span>
     </button>
     <button mat-flat-button *ngIf="userType == 'Employer' && loggedIn" routerLink="/applied-candidates" routerLinkActive="router-link-active" class="headerbutton">
