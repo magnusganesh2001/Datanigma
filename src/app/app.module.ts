@@ -1,3 +1,4 @@
+import { ListJobsPostedComponent } from './employer/list-jobs-posted/list-jobs-posted.component';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
@@ -25,6 +26,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { AppliedCandidatesComponent } from './applied-candidates/applied-candidates.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatRadioModule } from '@angular/material/radio';
+import { CompanyProfileComponent } from './employer/company-profile/company-profile.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +40,8 @@ import { MatRadioModule } from '@angular/material/radio';
     HeaderComponent,
     AppliedJobsComponent,
     AppliedCandidatesComponent,
+    ListJobsPostedComponent,
+    CompanyProfileComponent
   ],
   imports: [
     BrowserModule,
