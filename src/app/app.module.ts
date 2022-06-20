@@ -26,6 +26,7 @@ import { AppliedCandidatesComponent } from './applied-candidates/applied-candida
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatRadioModule } from '@angular/material/radio';
 import { CandidateProfileComponent } from './candidate-profile/candidate-profile.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { CandidateProfileComponent } from './candidate-profile/candidate-profile
     AppliedJobsComponent,
     AppliedCandidatesComponent,
     CandidateProfileComponent,
+    PageNotFoundComponent,
   ],
   imports: [
     BrowserModule,

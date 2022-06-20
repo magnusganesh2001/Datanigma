@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 })
 export class HeaderComponent implements OnInit, OnDestroy {
 
+  user: any;
   userType: string;
   loggedIn: boolean;
   url: string;
@@ -16,16 +17,20 @@ export class HeaderComponent implements OnInit, OnDestroy {
   constructor(private router:Router, private authService: AuthService){
     this.loggedIn = authService.isAuthenticated();
     this.url = router.url;
-    this.userType = '';
+    this.user = authService.getTokenData();
+    this.userType = this.user.type;
   }
-  
+
   ngOnInit(): void {
     this.authService.authorised.subscribe(res => {
       this.loggedIn = res;
-      if (this.loggedIn)
-        this.userType = this.authService.getTokenData().type;
-      else
-        this.userType = '';
+      if (this.loggedIn) {
+        this.user = this.authService.getTokenData();
+        this.userType = this.user.type;
+        return;
+      }
+      this.userType = '';
+      this.user = {};
     });
   }
 

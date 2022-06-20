@@ -1,3 +1,4 @@
+import { SeekerGuard } from './core/guards/seeker.guard';
 import { CandidateProfileComponent } from './candidate-profile/candidate-profile.component';
 import { AppliedCandidatesComponent } from './applied-candidates/applied-candidates.component';
 import { AppComponent } from './app.component';
@@ -12,6 +13,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { EmployerGuard } from './core/guards/employer.guard';
 import { AppliedJobsComponent } from './applied-jobs/applied-jobs.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 const routes: Routes = [
   {path: "login", component:LoginComponent},
@@ -22,7 +24,8 @@ const routes: Routes = [
   {path: "find-job", component: FindJobsComponent, canActivate: [AuthGuard]},
   {path: "applied-candidates", component: AppliedCandidatesComponent, canActivate: [AuthGuard]},
   {path: "applied-jobs", component: AppliedJobsComponent, canActivate: [AuthGuard]},
-  {path: "candidate-profile", component: CandidateProfileComponent, canActivate: [AuthGuard]}
+  {path: "candidate-profile/:id", component: CandidateProfileComponent, canActivate: [AuthGuard]},
+  { path: '**', component: PageNotFoundComponent }
 ];
 
 @NgModule({
