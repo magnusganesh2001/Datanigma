@@ -1,3 +1,4 @@
+import { ModalResumeComponent } from './modal-resume/modal-resume.component';
 import { CandidateProfileComponent } from './candidate-profile/candidate-profile.component';
 import { AppliedCandidatesComponent } from './applied-candidates/applied-candidates.component';
 import { AppComponent } from './app.component';
@@ -22,7 +23,8 @@ const routes: Routes = [
   {path: "find-job", component: FindJobsComponent, canActivate: [AuthGuard]},
   {path: "applied-candidates", component: AppliedCandidatesComponent, canActivate: [AuthGuard]},
   {path: "applied-jobs", component: AppliedJobsComponent, canActivate: [AuthGuard]},
-  {path: "candidate-profile", component: CandidateProfileComponent, canActivate: [AuthGuard]}
+  {path: "candidate-profile", component: CandidateProfileComponent, canActivate: [AuthGuard]},
+  {path: "modalResume", component: ModalResumeComponent, canActivate: [AuthGuard]}
 ];
 
 @NgModule({

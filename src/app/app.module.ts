@@ -1,3 +1,4 @@
+import { MatDialog } from '@angular/material/dialog';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
@@ -8,7 +9,7 @@ import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { HomeComponent } from './home/home.component';
 import { AppliedJobsComponent } from './applied-jobs/applied-jobs.component';
-
+import {MatDialogModule } from '@angular/material/dialog';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
@@ -26,6 +27,8 @@ import { AppliedCandidatesComponent } from './applied-candidates/applied-candida
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatRadioModule } from '@angular/material/radio';
 import { CandidateProfileComponent } from './candidate-profile/candidate-profile.component';
+import { ModalResumeComponent } from './modal-resume/modal-resume.component';
+import { AngularFileUploaderModule } from "angular-file-uploader";
 
 @NgModule({
   declarations: [
@@ -40,6 +43,7 @@ import { CandidateProfileComponent } from './candidate-profile/candidate-profile
     AppliedJobsComponent,
     AppliedCandidatesComponent,
     CandidateProfileComponent,
+    ModalResumeComponent,
   ],
   imports: [
     BrowserModule,
@@ -56,7 +60,9 @@ import { CandidateProfileComponent } from './candidate-profile/candidate-profile
     MatRadioModule,
     ToastrModule.forRoot(),
     FormsModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatDialogModule,
+    AngularFileUploaderModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

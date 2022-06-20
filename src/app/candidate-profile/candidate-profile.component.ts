@@ -1,8 +1,7 @@
-import { User } from './../core/models/user.model';
 import { AuthService } from './../core/services/auth.service';
 import { Component, OnInit } from '@angular/core';
-import { JobService } from './../core/services/job.service';
-
+import { MatDialog } from '@angular/material/dialog';
+import { ModalResumeComponent } from '../modal-resume/modal-resume.component'
 @Component({
   selector: 'app-candidate-profile',
   templateUrl: './candidate-profile.component.html',
@@ -13,10 +12,15 @@ import { JobService } from './../core/services/job.service';
 export class CandidateProfileComponent implements OnInit {
   
 
-  constructor(private authService: AuthService, private jobService: JobService) { }
+  constructor(private authService: AuthService, public dialog: MatDialog) { }
   
   ngOnInit(): void {
   }
+  openDialog() {
+    const dialogRef = this.dialog.open(ModalResumeComponent);
 
-  
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
 }
