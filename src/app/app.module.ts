@@ -29,6 +29,7 @@ import { MatRadioModule } from '@angular/material/radio';
 import { CandidateProfileComponent } from './candidate-profile/candidate-profile.component';
 import { ModalResumeComponent } from './modal-resume/modal-resume.component';
 import { AngularFileUploaderModule } from "angular-file-uploader";
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { AngularFileUploaderModule } from "angular-file-uploader";
     AppliedCandidatesComponent,
     CandidateProfileComponent,
     ModalResumeComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,

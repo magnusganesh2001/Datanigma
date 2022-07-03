@@ -1,4 +1,4 @@
-<div class="postform">
+<div class="postform formcontent">
   <form class="example-form" [formGroup]="jobPostForm" (submit)="createJob()">
     <mat-form-field class="example-full-width" appearance="fill">
       <mat-label>Job Title</mat-label>
@@ -45,13 +45,13 @@
       <textarea matInput required type="text" formControlName="jobDescription"></textarea>
     </mat-form-field>
     <!-- urgent -->
-    <label class="thick" class="example-full-width">Urgent :
+    <label class="thick" class="example-full-width">Immediate Joining :
     <mat-radio-group aria-label="Select an option" formControlName="urgent">
       <mat-radio-button value="true">Yes</mat-radio-button>
       <mat-radio-button value="false">No</mat-radio-button>
     </mat-radio-group>
     </label>
-
-    <button mat-raised-button type="submit">Post</button>
+    
+    <button mat-raised-button type="submit" class="btncontent">Post</button>
   </form>
 </div>

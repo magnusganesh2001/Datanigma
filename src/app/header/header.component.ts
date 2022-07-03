@@ -1,7 +1,8 @@
 import { AuthService } from './../core/services/auth.service';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-
+import { MatDialog } from '@angular/material/dialog';
+import { ModalResumeComponent } from '../modal-resume/modal-resume.component'
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -13,7 +14,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   loggedIn: boolean;
   url: string;
 
-  constructor(private router:Router, private authService: AuthService){
+  constructor(private router:Router, private authService: AuthService, public dialog: MatDialog){
     this.loggedIn = authService.isAuthenticated();
     this.url = router.url;
     this.userType = '';
@@ -35,6 +36,13 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   logout() {
     this.authService.logout();
+  }
+  openDialog() {
+    const dialogRef = this.dialog.open(ModalResumeComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
   }
 
 }

@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./employer.component.scss']
 })
 export class EmployerComponent implements OnInit {
-  displayedColumns: string[] = ['no', 'title', 'company', 'description', 'salary'];
+  displayedColumns: string[] = ['title', 'company', 'description', 'salary'];
   dataSource = [];
   constructor(private jobService: JobService) {
     this.jobService.getCreatedJobs().then(res => {
