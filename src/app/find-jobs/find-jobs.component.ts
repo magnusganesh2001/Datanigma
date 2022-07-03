@@ -30,7 +30,10 @@ export class FindJobsComponent {
     private toastService: ToastrService
   ) {
     this.jobInDisplay = undefined;
-    this.userId = this.authService.getTokenData().id;
+    if (authService.isAuthenticated())
+      this.userId = this.authService.getTokenData().id;
+    else
+      this.userId = '';
     this.jobService.getAllJobs().then((res) => {
       let jobList: any[] = res.data.jobs;
       jobList.forEach(job =>{
@@ -55,6 +58,10 @@ export class FindJobsComponent {
   }
 
   applyJob(jobId: any): void {
+    if (!this.authService.isAuthenticated()) {
+      this.router.navigate(['/login']);
+      return;
+    }
     this.jobService
       .applyJob(jobId)
       .then((res) => {
