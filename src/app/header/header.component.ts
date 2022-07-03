@@ -1,5 +1,5 @@
 import { AuthService } from './../core/services/auth.service';
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { ModalResumeComponent } from '../modal-resume/modal-resume.component'
@@ -8,7 +8,7 @@ import { ModalResumeComponent } from '../modal-resume/modal-resume.component'
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnInit, OnDestroy {
+export class HeaderComponent implements OnDestroy {
 
   userType: string;
   loggedIn: boolean;
@@ -18,9 +18,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.loggedIn = authService.isAuthenticated();
     this.url = router.url;
     this.userType = '';
-  }
-  
-  ngOnInit(): void {
+    if (authService.isAuthenticated())
+      this.userType = authService.getTokenData().type;
     this.authService.authorised.subscribe(res => {
       this.loggedIn = res;
       if (this.loggedIn)

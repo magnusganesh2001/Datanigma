@@ -34,7 +34,7 @@ export class FindJobsComponent {
     this.jobService.getAllJobs().then((res) => {
       let jobList: any[] = res.data.jobs;
       jobList.forEach(job =>{
-        if (job.candidates.includes(this.userId)) 
+        if (job.candidates.includes(this.userId))
           job['applied'] = true;
         else
           job['applied'] = false;
@@ -59,7 +59,7 @@ export class FindJobsComponent {
       .applyJob(jobId)
       .then((res) => {
         this.toastService.success('Job has been applied successfully!', 'Job');
-        this.router.navigate(['']);
+        this.router.navigate(['applied-jobs']);
       })
       .catch((err) => {
         this.toastService.error(err.response.data.message, 'Job');
